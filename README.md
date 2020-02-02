@@ -9,12 +9,14 @@ The name was given because I wanted the flag that designates where in the target
 Get it from the <a href="https://github.com/DranKof/AppleAddon/Releases">releases</a> section above.
 
 **Attach a Secret Message:**
-To attach secret message to image, simply select and drag an image and a text file with message onto the .exe file, then click the left plus for unencrypted or right plus for very rudimentary encryption (bytewise ROT13).
-The output should appear in the same location as the original image (the original files are not modified).
+1) Select and drag an image and a text file onto the .exe file
+2) Click the left plus for unencrypted or right plus for very rudimentary encryption (bytewise ROT13)
+3) The original files are not modified, the output should appear in the same location as the original with the extension ".out" so you will have to rename it back to whatever file type it was if you want to view it
 
 **Detach a Secret Message:**
-To detach the secret message from the image, simply drag the image onto the .exe file and assuming it has an encrypted or unencrypted message, one of the two minus buttons should work (it will tell you if it can't find the start of the secret message and if both fail...the image probably just doesn't have a secret message in it and you chose the wrong file).
-The output should appear as a new text file (output.txt) in the same location as the dragged-secret-message-holding image.
+1) Drag the image onto the .exe file and assuming it has an encrypted or unencrypted message
+2) One of the two minus buttons should work (it will tell you if it can't find the start of the secret message and if both fail...the image probably just doesn't have a secret message in it and you chose the wrong file)
+3) The output should appear as a new text file (output.txt) in the same location as the dragged-secret-message-holding image
 
 # Does it work with other file types?
 
