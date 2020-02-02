@@ -1,7 +1,7 @@
 # AppleAddon
 
 **Why the name?**
-The name was given because I wanted the "flag" to designate where in the target file the embedded message started to be something easily identifiable when viewed in plain text and for this demo I thought "Apple!" would work just fine. "Addon" was because you're basically adding the entire contents of a file onto the end of another one.
+The name was given because I wanted the flag that designates where in the target file the embedded message started to be something easily identified when viewed in plain text and for this demo I thought "Apple!" would work just fine. "Addon" was because you're basically adding the entire contents of a file onto the end of another one.
 
 # How-to:
 
