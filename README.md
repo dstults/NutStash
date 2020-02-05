@@ -1,7 +1,7 @@
 # AppleAddon
 
 **Why the name?**
-The name was given because I wanted the flag that designates where in the target file the embedded message started to be something easily identified when viewed in plain text and for this demo I thought "Apple!" would work just fine. "Addon" was because you're basically adding the entire contents of a file onto the end of another one.
+Originally the name was "Apple Addon". The name was given because the flag for the start of the embedded file was arbitrarily just "Apple!". But after several people were like, "Apple? What does this have to do with Apple products?" I decided to take a different friend's advice and just follow the nomenclature of all my "Net" tools and name it "Nut"-something. He continued, though there is no networking going on behind the scenes, he thought that it just fits in and squirrels hide away nuts in plain sight, very similar to what this program does. "NutStash" it is.
 
 # How-to:
 
