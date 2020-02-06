@@ -23,9 +23,9 @@ Partial Class FrmNutStash
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmNutStash))
-        Me.BtnLoadImage = New System.Windows.Forms.Button()
+        Me.BtnFile1 = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.BtnLoadText = New System.Windows.Forms.Button()
+        Me.BtnFiles2 = New System.Windows.Forms.Button()
         Me.LblFile1 = New System.Windows.Forms.Label()
         Me.LblFile2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -38,26 +38,30 @@ Partial Class FrmNutStash
         Me.BtnProcess = New System.Windows.Forms.Button()
         Me.BtnClearFile1 = New System.Windows.Forms.Button()
         Me.BtnClearFile2 = New System.Windows.Forms.Button()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.BtnClearOutput = New System.Windows.Forms.Button()
+        Me.LblOutput = New System.Windows.Forms.Label()
+        Me.BtnOutput = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'BtnLoadImage
+        'BtnFile1
         '
-        Me.BtnLoadImage.Location = New System.Drawing.Point(11, 12)
-        Me.BtnLoadImage.Name = "BtnLoadImage"
-        Me.BtnLoadImage.Size = New System.Drawing.Size(96, 32)
-        Me.BtnLoadImage.TabIndex = 6
-        Me.BtnLoadImage.Text = "Load Image"
-        Me.BtnLoadImage.UseVisualStyleBackColor = True
+        Me.BtnFile1.Location = New System.Drawing.Point(11, 12)
+        Me.BtnFile1.Name = "BtnFile1"
+        Me.BtnFile1.Size = New System.Drawing.Size(96, 32)
+        Me.BtnFile1.TabIndex = 6
+        Me.BtnFile1.Text = "Load Image"
+        Me.BtnFile1.UseVisualStyleBackColor = True
         '
-        'BtnLoadText
+        'BtnFiles2
         '
-        Me.BtnLoadText.Location = New System.Drawing.Point(11, 53)
-        Me.BtnLoadText.Name = "BtnLoadText"
-        Me.BtnLoadText.Size = New System.Drawing.Size(96, 32)
-        Me.BtnLoadText.TabIndex = 7
-        Me.BtnLoadText.Text = "Load Text"
-        Me.BtnLoadText.UseVisualStyleBackColor = True
+        Me.BtnFiles2.Location = New System.Drawing.Point(11, 53)
+        Me.BtnFiles2.Name = "BtnFiles2"
+        Me.BtnFiles2.Size = New System.Drawing.Size(96, 32)
+        Me.BtnFiles2.TabIndex = 7
+        Me.BtnFiles2.Text = "Load Text"
+        Me.BtnFiles2.UseVisualStyleBackColor = True
         '
         'LblFile1
         '
@@ -87,7 +91,7 @@ Partial Class FrmNutStash
         Me.GroupBox1.Controls.Add(Me.RadEncryptAES256)
         Me.GroupBox1.Controls.Add(Me.RadEncryptROT13)
         Me.GroupBox1.Controls.Add(Me.RadEncryptNone)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 103)
+        Me.GroupBox1.Location = New System.Drawing.Point(11, 129)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(197, 143)
         Me.GroupBox1.TabIndex = 12
@@ -158,9 +162,9 @@ Partial Class FrmNutStash
         'BtnProcess
         '
         Me.BtnProcess.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnProcess.Location = New System.Drawing.Point(219, 12)
+        Me.BtnProcess.Location = New System.Drawing.Point(222, 14)
         Me.BtnProcess.Name = "BtnProcess"
-        Me.BtnProcess.Size = New System.Drawing.Size(95, 234)
+        Me.BtnProcess.Size = New System.Drawing.Size(95, 253)
         Me.BtnProcess.TabIndex = 13
         Me.BtnProcess.Text = "Attach / Detach"
         Me.BtnProcess.UseVisualStyleBackColor = True
@@ -183,19 +187,54 @@ Partial Class FrmNutStash
         Me.BtnClearFile2.Text = "x"
         Me.BtnClearFile2.UseVisualStyleBackColor = True
         '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.Filter = "All Files|*.*"
+        '
+        'BtnClearOutput
+        '
+        Me.BtnClearOutput.Location = New System.Drawing.Point(193, 87)
+        Me.BtnClearOutput.Name = "BtnClearOutput"
+        Me.BtnClearOutput.Size = New System.Drawing.Size(20, 20)
+        Me.BtnClearOutput.TabIndex = 18
+        Me.BtnClearOutput.Text = "x"
+        Me.BtnClearOutput.UseVisualStyleBackColor = True
+        '
+        'LblOutput
+        '
+        Me.LblOutput.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LblOutput.Location = New System.Drawing.Point(113, 91)
+        Me.LblOutput.Name = "LblOutput"
+        Me.LblOutput.Size = New System.Drawing.Size(96, 32)
+        Me.LblOutput.TabIndex = 17
+        Me.LblOutput.Text = "(no output file)"
+        Me.LblOutput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'BtnOutput
+        '
+        Me.BtnOutput.Location = New System.Drawing.Point(11, 91)
+        Me.BtnOutput.Name = "BtnOutput"
+        Me.BtnOutput.Size = New System.Drawing.Size(96, 32)
+        Me.BtnOutput.TabIndex = 16
+        Me.BtnOutput.Text = "Set Output File"
+        Me.BtnOutput.UseVisualStyleBackColor = True
+        '
         'FrmNutStash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(321, 251)
+        Me.ClientSize = New System.Drawing.Size(326, 277)
+        Me.Controls.Add(Me.BtnClearOutput)
+        Me.Controls.Add(Me.LblOutput)
+        Me.Controls.Add(Me.BtnOutput)
         Me.Controls.Add(Me.BtnClearFile2)
         Me.Controls.Add(Me.BtnClearFile1)
         Me.Controls.Add(Me.BtnProcess)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.LblFile2)
         Me.Controls.Add(Me.LblFile1)
-        Me.Controls.Add(Me.BtnLoadText)
-        Me.Controls.Add(Me.BtnLoadImage)
+        Me.Controls.Add(Me.BtnFiles2)
+        Me.Controls.Add(Me.BtnFile1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -206,9 +245,9 @@ Partial Class FrmNutStash
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents BtnLoadImage As Button
+    Friend WithEvents BtnFile1 As Button
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents BtnLoadText As Button
+    Friend WithEvents BtnFiles2 As Button
     Friend WithEvents LblFile1 As Label
     Friend WithEvents LblFile2 As Label
     Friend WithEvents GroupBox1 As GroupBox
@@ -221,4 +260,8 @@ Partial Class FrmNutStash
     Friend WithEvents txtPass2 As TextBox
     Friend WithEvents txtPass1 As TextBox
     Friend WithEvents ChkShow As CheckBox
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents BtnClearOutput As Button
+    Friend WithEvents LblOutput As Label
+    Friend WithEvents BtnOutput As Button
 End Class

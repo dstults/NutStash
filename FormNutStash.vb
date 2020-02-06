@@ -13,6 +13,7 @@
 
     Private InputFile1Path As String
     Private InputFile2Path As String
+    Private OutputFilePath As String
     Private MyPassword As String
 
     Private Function File1Found() As Boolean
@@ -21,6 +22,10 @@
 
     Private Function File2Found() As Boolean
         Return InputFile2Path <> ""
+    End Function
+
+    Private Function OutputFileSet() As Boolean
+        Return OutputFilePath <> ""
     End Function
 
     Private Function WeakCrypto(inputBytes() As Byte, MagicNumber As Integer) As Byte()
@@ -36,7 +41,7 @@
     End Function
 
     Private Function StrongCrypto(inputBytes() As Byte) As Byte()
-        If File1Found() Then
+        If File1Found() And OutputFileSet() Then
             If File2Found() Then
                 Return AES_Encrypt(inputBytes)
             Else
@@ -125,10 +130,10 @@
         Dim inputMessage() As Byte = My.Computer.FileSystem.ReadAllBytes(InputFile2Path)
         If RadEncryptROT13.Checked Then inputMessage = WeakCrypto(inputMessage, 13)
         If RadEncryptAES256.Checked Then inputMessage = StrongCrypto(inputMessage)
-        My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", file1Bytes, False)
-        My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", flagBytes, True)
-        My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", inputMessage, True)
-        MsgBox("Message written to new image: " & InputFile1Path & ".out")
+        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, file1Bytes, False)
+        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, flagBytes, True)
+        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, inputMessage, True)
+        MsgBox("Message written to new image: " & OutputFilePath)
     End Sub
 
     Private Sub DetachFile()
@@ -185,8 +190,8 @@
             MsgBox("Methinks you have the wrong password. Aborting export.")
             Exit Sub
         End If
-        My.Computer.FileSystem.WriteAllBytes(".\output.txt", NewBytes, True)
-        MsgBox("Message written to: .\output.txt")
+        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, NewBytes, True)
+        MsgBox("Message written to: " & OutputFilePath)
     End Sub
 
     Private Function GetFileProcess(aFilter As String) As Boolean
@@ -199,7 +204,7 @@
         Return True
     End Function
 
-    Private Sub BtnLoadFile1_Click(sender As Object, e As EventArgs) Handles BtnLoadImage.Click
+    Private Sub BtnFile1_Click(sender As Object, e As EventArgs) Handles BtnFile1.Click
         If Not GetFileProcess("Images|*.bmp;*.jpg;*.jpeg;*.gif;*.tif;*.tiff;*.png|All Files|*.*") Then Exit Sub
 
         If Dir(OpenFileDialog1.FileName) <> "" Then
@@ -211,7 +216,7 @@
         RefreshDisplay()
     End Sub
 
-    Private Sub BtnLoadText_Click(sender As Object, e As EventArgs) Handles BtnLoadText.Click
+    Private Sub BtnFiles2_Click(sender As Object, e As EventArgs) Handles BtnFiles2.Click
         If Not GetFileProcess("Images|*.txt;*.text|All Files|*.*") Then Exit Sub
 
         If Dir(OpenFileDialog1.FileName) <> "" Then
@@ -220,6 +225,17 @@
             MsgBox("Invalid filename? Seriously, how did you do that? Tell me on GitHub.")
             InputFile1Path = ""
         End If
+        RefreshDisplay()
+    End Sub
+
+    Private Sub BtnOutput_Click(sender As Object, e As EventArgs) Handles BtnOutput.Click
+        Select Case SaveFileDialog1.ShowDialog
+            Case DialogResult.Abort, DialogResult.Cancel
+                MsgBox("Attach process aborted.")
+                Exit Sub
+            Case Else
+                OutputFilePath = SaveFileDialog1.FileName
+        End Select
         RefreshDisplay()
     End Sub
 
@@ -238,16 +254,25 @@
             LblFile2.Text = "(no file 2)"
             BtnClearFile2.Enabled = False
         End If
+        If OutputFileSet() Then
+            LblOutput.Text = "..." & Strings.Right(OutputFilePath, 12)
+            BtnClearOutput.Enabled = True
+        Else
+            LblOutput.Text = "(no output file)"
+            BtnClearOutput.Enabled = False
+        End If
         BtnProcess.Enabled = False
-        If File1Found() Then
+        If File1Found() And OutputFileSet() Then
             BtnProcess.Enabled = True
             If File2Found() Then
                 BtnProcess.Text = "Attach"
             Else
                 BtnProcess.Text = "Detach"
             End If
-        Else
-            BtnProcess.Text = "Select Image"
+        ElseIf Not File1Found() Then
+            BtnProcess.Text = "Select File 1"
+        ElseIf Not OutputFileSet() Then
+            BtnProcess.Text = "Select Output File"
         End If
     End Sub
 
@@ -261,8 +286,13 @@
         RefreshDisplay()
     End Sub
 
+    Private Sub BtnClearOutput_Click(sender As Object, e As EventArgs) Handles BtnClearOutput.Click
+        OutputFilePath = ""
+        RefreshDisplay()
+    End Sub
+
     Private Sub BtnProcess_Click(sender As Object, e As EventArgs) Handles BtnProcess.Click
-        If File1Found() Then
+        If File1Found() And OutputFileSet() Then
             If RadEncryptAES256.Checked Then
                 If Not ChkShow.Checked And txtPass1.Text <> txtPass2.Text Then
                     MsgBox("Passwords don't match!")
@@ -302,4 +332,5 @@
                 txtPass2.Enabled = False
         End Select
     End Sub
+
 End Class
