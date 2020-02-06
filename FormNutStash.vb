@@ -6,9 +6,9 @@
 
     Private ThisVersion As String = "v0.7"
 
-    Private ReadOnly UnencryptedFlagBytes As Byte() = System.Text.Encoding.UTF8.GetBytes("Apple!")
-    Private ReadOnly ROT13FlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 2, 191, 61, 136, 25}
-    Private ReadOnly ComplexFlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 14, 22, 53, 26, 2, 191, 61, 136, 72}
+    Private ReadOnly UnencryptedFlagBytes As Byte() = System.Text.Encoding.UTF8.GetBytes("NutStash: ")
+    Private ReadOnly ROT13FlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 2, 191, 61, 136, 25, 57}
+    Private ReadOnly ComplexFlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 14, 22, 53, 26, 2, 191, 61, 136, 72, 201}
     Private CustomFlagBytes As Byte()
 
     Private InputFile1Path As String
@@ -85,7 +85,7 @@
             inputBytes = DESDecrypter.TransformFinalBlock(inputBytes, 0, inputBytes.Length)
             Return inputBytes
         Catch ex As Exception
-            ' THIS SHOULD NEVER HAPPEN
+            ' THIS HAPPENS WHEN YOU HAVE THE WRONG PASSWORD, BUT I DON'T WANT IT TO, IT SHOULD OUTPUT GARBLE INSTEAD
             Return Nothing
         End Try
     End Function
@@ -181,6 +181,10 @@
         'MsgBox(DetachedMessage)
         If RadEncryptROT13.Checked Then NewBytes = WeakCrypto(NewBytes, -13)
         If RadEncryptAES256.Checked Then NewBytes = StrongCrypto(NewBytes)
+        If NewBytes Is Nothing Then
+            MsgBox("Methinks you have the wrong password. Aborting export.")
+            Exit Sub
+        End If
         My.Computer.FileSystem.WriteAllBytes(".\output.txt", NewBytes, True)
         MsgBox("Message written to: .\output.txt")
     End Sub
@@ -222,13 +226,17 @@
     Private Sub RefreshDisplay()
         If File1Found() Then
             LblFile1.Text = "..." & Strings.Right(InputFile1Path, 12)
+            BtnClearFile1.Enabled = True
         Else
             LblFile1.Text = "(no file 1)"
+            BtnClearFile1.Enabled = False
         End If
         If File2Found() Then
             LblFile2.Text = "..." & Strings.Right(InputFile2Path, 12)
+            BtnClearFile2.Enabled = True
         Else
             LblFile2.Text = "(no file 2)"
+            BtnClearFile2.Enabled = False
         End If
         BtnProcess.Enabled = False
         If File1Found() Then
