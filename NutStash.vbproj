@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4350597A-9238-426F-972D-A6575CE94F25}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>AppleAddon.My.MyApplication</StartupObject>
-    <RootNamespace>AppleAddon</RootNamespace>
-    <AssemblyName>AppleAddon</AssemblyName>
+    <StartupObject>NutStash.My.MyApplication</StartupObject>
+    <RootNamespace>NutStash</RootNamespace>
+    <AssemblyName>NutStash</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -37,7 +37,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>AppleAddon.xml</DocumentationFile>
+    <DocumentationFile>NutStash.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
@@ -48,7 +48,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>AppleAddon.xml</DocumentationFile>
+    <DocumentationFile>NutStash.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -92,11 +92,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormApple.vb">
+    <Compile Include="FormNutStash.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormApple.Designer.vb">
-      <DependentUpon>FormApple.vb</DependentUpon>
+    <Compile Include="FormNutStash.Designer.vb">
+      <DependentUpon>FormNutStash.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -116,8 +116,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormApple.resx">
-      <DependentUpon>FormApple.vb</DependentUpon>
+    <EmbeddedResource Include="FormNutStash.resx">
+      <DependentUpon>FormNutStash.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
