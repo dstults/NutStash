@@ -29,15 +29,15 @@ Partial Class FrmNutStash
         Me.LblFile1 = New System.Windows.Forms.Label()
         Me.LblFile2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ChkShow = New System.Windows.Forms.CheckBox()
+        Me.txtPass2 = New System.Windows.Forms.TextBox()
+        Me.txtPass1 = New System.Windows.Forms.TextBox()
         Me.RadEncryptAES256 = New System.Windows.Forms.RadioButton()
         Me.RadEncryptROT13 = New System.Windows.Forms.RadioButton()
         Me.RadEncryptNone = New System.Windows.Forms.RadioButton()
         Me.BtnProcess = New System.Windows.Forms.Button()
         Me.BtnClearFile1 = New System.Windows.Forms.Button()
         Me.BtnClearFile2 = New System.Windows.Forms.Button()
-        Me.txtPass1 = New System.Windows.Forms.TextBox()
-        Me.txtPass2 = New System.Windows.Forms.TextBox()
-        Me.ChkShow = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -93,6 +93,35 @@ Partial Class FrmNutStash
         Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Encryption"
+        '
+        'ChkShow
+        '
+        Me.ChkShow.AutoSize = True
+        Me.ChkShow.Enabled = False
+        Me.ChkShow.Location = New System.Drawing.Point(124, 67)
+        Me.ChkShow.Name = "ChkShow"
+        Me.ChkShow.Size = New System.Drawing.Size(53, 17)
+        Me.ChkShow.TabIndex = 17
+        Me.ChkShow.Text = "Show"
+        Me.ChkShow.UseVisualStyleBackColor = True
+        '
+        'txtPass2
+        '
+        Me.txtPass2.Enabled = False
+        Me.txtPass2.Location = New System.Drawing.Point(49, 114)
+        Me.txtPass2.Name = "txtPass2"
+        Me.txtPass2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtPass2.Size = New System.Drawing.Size(128, 20)
+        Me.txtPass2.TabIndex = 16
+        '
+        'txtPass1
+        '
+        Me.txtPass1.Enabled = False
+        Me.txtPass1.Location = New System.Drawing.Point(49, 89)
+        Me.txtPass1.Name = "txtPass1"
+        Me.txtPass1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtPass1.Size = New System.Drawing.Size(128, 20)
+        Me.txtPass1.TabIndex = 15
         '
         'RadEncryptAES256
         '
@@ -153,32 +182,6 @@ Partial Class FrmNutStash
         Me.BtnClearFile2.TabIndex = 15
         Me.BtnClearFile2.Text = "x"
         Me.BtnClearFile2.UseVisualStyleBackColor = True
-        '
-        'txtPass1
-        '
-        Me.txtPass1.Location = New System.Drawing.Point(49, 89)
-        Me.txtPass1.Name = "txtPass1"
-        Me.txtPass1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPass1.Size = New System.Drawing.Size(128, 20)
-        Me.txtPass1.TabIndex = 15
-        '
-        'txtPass2
-        '
-        Me.txtPass2.Location = New System.Drawing.Point(49, 114)
-        Me.txtPass2.Name = "txtPass2"
-        Me.txtPass2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPass2.Size = New System.Drawing.Size(128, 20)
-        Me.txtPass2.TabIndex = 16
-        '
-        'ChkShow
-        '
-        Me.ChkShow.AutoSize = True
-        Me.ChkShow.Location = New System.Drawing.Point(124, 67)
-        Me.ChkShow.Name = "ChkShow"
-        Me.ChkShow.Size = New System.Drawing.Size(53, 17)
-        Me.ChkShow.TabIndex = 17
-        Me.ChkShow.Text = "Show"
-        Me.ChkShow.UseVisualStyleBackColor = True
         '
         'FrmNutStash
         '
