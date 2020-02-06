@@ -6,7 +6,7 @@ Originally the name was "Apple Addon". The name was given because the flag for t
 # How-to:
 
 **Download the program:**
-Get it from the <a href="https://github.com/DranKof/AppleAddon/Releases">releases</a> section above.
+Get it from the <a href="https://github.com/DranKof/NutStash/releases">releases</a> section above.
 
 **Attach a Secret Message:**
 1) Select and drag an image and a text file onto the .exe file
