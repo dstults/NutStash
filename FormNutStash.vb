@@ -20,7 +20,7 @@
         Return InputFile2Path <> ""
     End Function
 
-    Private Function WeakCrypto(inputBytes() As Byte, MagicNumber As Integer)
+    Private Function WeakCrypto(inputBytes() As Byte, MagicNumber As Integer) As Byte()
         Dim outputBytes(inputBytes.Length - 1) As Byte
         Dim tempInt As Integer
         For intA As Integer = 0 To inputBytes.Length - 1
@@ -30,6 +30,10 @@
             outputBytes(intA) = tempInt
         Next
         Return outputBytes
+    End Function
+
+    Private Function StrongCrypto() As Byte()
+
     End Function
 
     Public Function AES_Encrypt(ByVal input As String, ByVal pass As String) As String
@@ -102,7 +106,8 @@
 
         Dim imageBytes() As Byte = My.Computer.FileSystem.ReadAllBytes(InputFile1Path)
         Dim inputMessage() As Byte = My.Computer.FileSystem.ReadAllBytes(InputFile2Path)
-        If Encrypt Then inputMessage = WeakCryypto(inputMessage, 13)
+        If RadEncryptROT13.Checked Then inputMessage = WeakCrypto(inputMessage, 13)
+        If RadEncryptAES256.Checked Then inputMessage = StrongCrypto(inputMessage, True)
         My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", imageBytes, False)
         My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", flagBytes, True)
         My.Computer.FileSystem.WriteAllBytes(InputFile1Path & ".out", inputMessage, True)
@@ -110,21 +115,21 @@
     End Sub
 
     Private Sub DetachFile()
-        Dim imageBytes() As Byte = My.Computer.FileSystem.ReadAllBytes(InputFile1Path)
-        Dim LocationOfFlagStart As Integer = GetLocationMessageStart(imageBytes, flagBytes)
+        Dim file1Bytes() As Byte = My.Computer.FileSystem.ReadAllBytes(InputFile1Path)
+        Dim LocationOfFlagStart As Integer = GetLocationMessageStart(file1Bytes, flagBytes)
         If LocationOfFlagStart = -1 Then
             MsgBox("No flag bytes found -- no good!")
         Else
-            GetAndDisplayMessage(LocationOfFlagStart, imageBytes, flagBytes, Decrypt)
+            GetAndDisplayMessage(LocationOfFlagStart, file1Bytes, flagBytes, Decrypt)
         End If
     End Sub
-    Private Function GetLocationMessageStart(imageBytes() As Byte, flagBytes() As Byte) As Integer
-        For intByte As Integer = 0 To (imageBytes.Length - 1) - (flagBytes.Length - 1) ' 1s cancel out, can be removed, but not for now
+    Private Function GetLocationMessageStart(file1Bytes() As Byte, flagBytes() As Byte) As Integer
+        For intByte As Integer = 0 To (file1Bytes.Length - 1) - (flagBytes.Length - 1) ' 1s cancel out, can be removed, but not for now
 
-            If imageBytes(intByte) = flagBytes(0) Then
+            If file1Bytes(intByte) = flagBytes(0) Then
                 Dim passesTest As Boolean = True
                 For intSubByte As Integer = 1 To flagBytes.Length - 1
-                    If imageBytes(intByte + intSubByte) <> flagBytes(intSubByte) Then passesTest = False
+                    If file1Bytes(intByte + intSubByte) <> flagBytes(intSubByte) Then passesTest = False
                 Next
                 If passesTest Then Return intByte + 1
             End If
@@ -143,7 +148,7 @@
         'Dim DetachedMessage As String = BitConverter.ToString(NewBytes, 0, NewBytes.Length - 1)
         'Dim DetachedMessage As String = System.Text.Encoding.UTF8.GetString(NewBytes)
         'MsgBox(DetachedMessage)
-        If Decrypt Then NewBytes = ByteCrypto(NewBytes, -13)
+        If Decrypt Then NewBytes = WeakCrypto(NewBytes, -13)
         My.Computer.FileSystem.WriteAllBytes(".\output.txt", NewBytes, True)
         MsgBox("Message written to: .\output.txt")
     End Sub
