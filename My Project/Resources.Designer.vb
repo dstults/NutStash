@@ -39,7 +39,7 @@ Namespace My.Resources
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("NutCheck.Resources", GetType(Resources).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("NutStash.Resources", GetType(Resources).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -63,9 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
-        Friend ReadOnly Property Apple() As System.Drawing.Icon
+        Friend ReadOnly Property Squirrel() As System.Drawing.Icon
             Get
-                Dim obj As Object = ResourceManager.GetObject("Apple", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Squirrel", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property

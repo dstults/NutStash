@@ -1,12 +1,13 @@
 ﻿Public Class FrmNutStash
 
     ' Program by Darren Stults
-    ' Icon art by Martin Berube
-    ' Free use permission from http://www.iconarchive.com/show/food-icons-by-martin-berube/apple-icon.html
+
+    ' Icon art by unknown, from: https://www.iconfinder.com/icons/298871/squirrel_icon
+    '   License: https://opensource.org/licenses/MIT
 
     Private ThisVersion As String = "v0.7"
 
-    Private ReadOnly UnencryptedFlagBytes As Byte() = System.Text.Encoding.UTF8.GetBytes("NutStash: ")
+    Private ReadOnly UnencryptedFlagBytes As Byte() = System.Text.Encoding.UTF8.GetBytes("=NutStash=" & vbNewLine)
     Private ReadOnly ROT13FlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 2, 191, 61, 136, 25, 57}
     Private ReadOnly ComplexFlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 14, 22, 53, 26, 2, 191, 61, 136, 72, 201}
     Private CustomFlagBytes As Byte()
@@ -190,7 +191,7 @@
             MsgBox("Methinks you have the wrong password. Aborting export.")
             Exit Sub
         End If
-        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, NewBytes, True)
+        My.Computer.FileSystem.WriteAllBytes(OutputFilePath, NewBytes, False)
         MsgBox("Message written to: " & OutputFilePath)
     End Sub
 
@@ -205,7 +206,7 @@
     End Function
 
     Private Sub BtnFile1_Click(sender As Object, e As EventArgs) Handles BtnFile1.Click
-        If Not GetFileProcess("Images|*.bmp;*.jpg;*.jpeg;*.gif;*.tif;*.tiff;*.png|All Files|*.*") Then Exit Sub
+        If Not GetFileProcess("All Files|*.*|Images|*.bmp;*.jpg;*.jpeg;*.gif;*.tif;*.tiff;*.png") Then Exit Sub
 
         If Dir(OpenFileDialog1.FileName) <> "" Then
             InputFile1Path = OpenFileDialog1.FileName
@@ -217,7 +218,7 @@
     End Sub
 
     Private Sub BtnFiles2_Click(sender As Object, e As EventArgs) Handles BtnFiles2.Click
-        If Not GetFileProcess("Images|*.txt;*.text|All Files|*.*") Then Exit Sub
+        If Not GetFileProcess("All Files|*.*|Text Files|*.txt;*.text") Then Exit Sub
 
         If Dir(OpenFileDialog1.FileName) <> "" Then
             InputFile2Path = OpenFileDialog1.FileName
@@ -231,7 +232,7 @@
     Private Sub BtnOutput_Click(sender As Object, e As EventArgs) Handles BtnOutput.Click
         Select Case SaveFileDialog1.ShowDialog
             Case DialogResult.Abort, DialogResult.Cancel
-                MsgBox("Attach process aborted.")
+                'MsgBox("Attach process aborted.")
                 Exit Sub
             Case Else
                 OutputFilePath = SaveFileDialog1.FileName

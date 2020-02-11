@@ -29,6 +29,7 @@ Partial Class FrmNutStash
         Me.LblFile1 = New System.Windows.Forms.Label()
         Me.LblFile2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.ChkShow = New System.Windows.Forms.CheckBox()
         Me.txtPass2 = New System.Windows.Forms.TextBox()
         Me.txtPass1 = New System.Windows.Forms.TextBox()
@@ -51,7 +52,7 @@ Partial Class FrmNutStash
         Me.BtnFile1.Name = "BtnFile1"
         Me.BtnFile1.Size = New System.Drawing.Size(96, 32)
         Me.BtnFile1.TabIndex = 6
-        Me.BtnFile1.Text = "Load Image"
+        Me.BtnFile1.Text = "Load File 1"
         Me.BtnFile1.UseVisualStyleBackColor = True
         '
         'BtnFiles2
@@ -60,7 +61,7 @@ Partial Class FrmNutStash
         Me.BtnFiles2.Name = "BtnFiles2"
         Me.BtnFiles2.Size = New System.Drawing.Size(96, 32)
         Me.BtnFiles2.TabIndex = 7
-        Me.BtnFiles2.Text = "Load Text"
+        Me.BtnFiles2.Text = "Load File 2"
         Me.BtnFiles2.UseVisualStyleBackColor = True
         '
         'LblFile1
@@ -85,6 +86,7 @@ Partial Class FrmNutStash
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.ChkShow)
         Me.GroupBox1.Controls.Add(Me.txtPass2)
         Me.GroupBox1.Controls.Add(Me.txtPass1)
@@ -97,6 +99,15 @@ Partial Class FrmNutStash
         Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Encryption"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(18, 92)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(25, 13)
+        Me.Label1.TabIndex = 18
+        Me.Label1.Text = "PW"
         '
         'ChkShow
         '
@@ -264,4 +275,5 @@ Partial Class FrmNutStash
     Friend WithEvents BtnClearOutput As Button
     Friend WithEvents LblOutput As Label
     Friend WithEvents BtnOutput As Button
+    Friend WithEvents Label1 As Label
 End Class
