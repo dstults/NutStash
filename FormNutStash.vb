@@ -5,7 +5,7 @@
     ' Icon art by unknown, from: https://www.iconfinder.com/icons/298871/squirrel_icon
     '   License: https://opensource.org/licenses/MIT
 
-    Private ThisVersion As String = "v0.7"
+    Private ThisVersion As String = "v0.7.1"
 
     Private ReadOnly UnencryptedFlagBytes As Byte() = System.Text.Encoding.UTF8.GetBytes("=NutStash=" & vbNewLine)
     Private ReadOnly ROT13FlagBytes As Byte() = {15, 39, 54, 234, 42, 96, 2, 191, 61, 136, 25, 57}
